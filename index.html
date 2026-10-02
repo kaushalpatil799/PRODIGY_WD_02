@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#100d2c">
+    <title>ChronoX | Stopwatch Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="ambient ambient-three"></div>
+
+    <header class="topbar">
+        <a href="#" class="brand">
+            <span class="brand-icon">◷</span>
+            <span>chrono<span class="brand-accent">X</span></span>
+        </a>
+
+        <div class="topbar-right">
+            <span class="live-indicator"></span>
+            <span class="live-label">PRECISION TIMER</span>
+            <button class="theme-button" id="themeButton" aria-label="Change theme">☼</button>
+        </div>
+    </header>
+
+    <main class="workspace">
+        <section class="intro">
+            <div class="eyebrow"><span>✦</span> TIME YOUR MOMENT</div>
+            <h1>Every second<br>has a <span>story.</span></h1>
+            <p>A beautifully precise stopwatch built for your everyday goals, workouts and focused sessions.</p>
+
+            <div class="intro-tags">
+                <span>◈ Precision timing</span>
+                <span>↗ Lap tracking</span>
+                <span>✳ Focus mode</span>
+            </div>
+        </section>
+
+        <section class="timer-card">
+            <div class="card-heading">
+                <div>
+                    <span class="section-label">STOPWATCH</span>
+                    <h2>Your time, your pace.</h2>
+                </div>
+                <span class="status-pill" id="statusPill">
+                    <span class="status-dot"></span>
+                    <span id="statusText">READY</span>
+                </span>
+            </div>
+
+            <div class="timer-stage">
+                <div class="timer-ring" id="timerRing">
+                    <div class="ring-inner">
+                        <div class="timer-icon">◷</div>
+                        <div class="timer-display" id="timerDisplay" role="timer" aria-live="off">00:00:00</div>
+                        <div class="milliseconds" id="milliseconds">.00</div>
+                        <div class="timer-caption">HOURS : MINUTES : SECONDS</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timer-metrics">
+                <div class="metric">
+                    <span class="metric-icon purple-icon">◷</span>
+                    <div>
+                        <span class="metric-label">ELAPSED TIME</span>
+                        <strong id="elapsedMetric">00:00</strong>
+                    </div>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric">
+                    <span class="metric-icon orange-icon">⚑</span>
+                    <div>
+                        <span class="metric-label">LAPS RECORDED</span>
+                        <strong id="lapMetric">00</strong>
+                    </div>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric">
+                    <span class="metric-icon green-icon">↗</span>
+                    <div>
+                        <span class="metric-label">BEST LAP</span>
+                        <strong id="bestMetric">--:--</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timer-controls">
+                <button class="control-button reset-button" id="resetButton">
+                    <span>↺</span>
+                    <span>Reset</span>
+                </button>
+                <button class="control-button start-button" id="startButton">
+                    <span id="startIcon">▶</span>
+                    <span id="startText">Start Timer</span>
+                </button>
+                <button class="control-button lap-button" id="lapButton" disabled>
+                    <span>⚑</span>
+                    <span>Lap</span>
+                </button>
+            </div>
+
+            <div class="keyboard-hint">
+                <span>⌨</span> SPACE to start / pause
+                <span class="hint-separator">•</span>
+                L to record a lap
+                <span class="hint-separator">•</span>
+                R to reset
+            </div>
+        </section>
+
+        <section class="history-card">
+            <div class="history-heading">
+                <div>
+                    <span class="section-label">YOUR SESSION</span>
+                    <h2>Lap history <span class="count-badge" id="lapCount">0</span></h2>
+                </div>
+                <button class="clear-button" id="clearButton">Clear laps ↗</button>
+            </div>
+
+            <div class="lap-summary">
+                <div class="summary-block">
+                    <span>Total laps</span>
+                    <strong id="summaryLaps">0</strong>
+                </div>
+                <div class="summary-block">
+                    <span>Average lap</span>
+                    <strong id="averageLap">--:--</strong>
+                </div>
+                <div class="summary-block">
+                    <span>Last lap</span>
+                    <strong id="lastLap">--:--</strong>
+                </div>
+            </div>
+
+            <div class="lap-table">
+                <div class="lap-table-header">
+                    <span>LAP</span>
+                    <span>LAP TIME</span>
+                    <span>TOTAL TIME</span>
+                    <span>PERFORMANCE</span>
+                </div>
+
+                <div id="lapList" class="lap-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">⌁</div>
+                        <strong>Your journey starts here</strong>
+                        <p>Start the timer and record your first lap.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-footer">
+                <span><span class="footer-dot"></span> Your session stays in this page</span>
+                <button id="exportButton" class="export-button">↓ Export CSV</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="#" class="footer-brand">chrono<span>X</span></a>
+        <p>Made for moments that matter.</p>
+        <span class="footer-credit">WEB DEVELOPMENT · TASK 02</span>
+    </footer>
+
+    <div class="toast" id="toast" role="status"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
